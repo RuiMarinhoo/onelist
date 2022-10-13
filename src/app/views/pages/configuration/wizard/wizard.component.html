@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+  <div>
+    <h4 class="mb-3 mb-md-0">Configuración de {{type}}</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+
+        <aw-wizard>
+          <aw-wizard-step stepTitle="step 1">
+            <div class="row mb-3">
+              <div class="col-md-12">
+                Ejemplo de información extraída de CSV
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead style="border-top: 0!important;">
+                  <tr>
+                    <th class="pt-0" *ngFor="let col of csvCols; index as i;">{{col}}</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of csv.slice(0, 3); index as i;">
+                    <td *ngFor="let val of item | keyvalue: keepOrder">{{val.value}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <button class="btn btn-primary" type="button" awNextStep>Continue</button>
+            </div>
+          </aw-wizard-step>
+          <aw-wizard-step stepTitle="step 2">
+            <div class="row mb-3">
+              <div class="col-md-12 grid-margin">
+                Información necesaria
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12 grid-margin">
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let col of objectKeys(dbInfo); index as i;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div>{{col}}</div>
+                      </div>
+                      <div class="col-md-6">
+                        <select class="form-select form-select-sm" (change)="onChange($event.target, col)">
+                          <option selected>Open this select menu</option>
+                          <option *ngFor="let col of csvCols; index as i;" [value]="i">{{col}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+              <button class="btn btn-primary" type="button" awNextStep (click)="mapAllInfo()">Continue</button>
+            </div>
+          </aw-wizard-step>
+
+          <aw-wizard-step stepTitle="step 3">
+            <div class="row mb-3">
+              <div class="col-md-12">
+                Ejemplo de la lista de {{type}}
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead style="border-top: 0!important;">
+                  <tr>
+                    <th class="pt-0" *ngFor="let col of dbInfo | keyvalue: asIsOrder; index as i;">{{col.key}}</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of dataToSaveOnBD.slice(0, 3); index as i;">
+                    <td *ngFor="let val of item | keyvalue: asIsOrder">{{val.value}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <button class="btn btn-primary" type="button" awNextStep>Continue</button>
+            </div>
+          </aw-wizard-step>
+
+          <aw-wizard-step stepTitle="finish">
+            <div class="text-center">
+              <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
+              <h3 class="text-muted mb-3">Thank you !</h3>
+              <p class="w-75 mx-auto mb-4 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a tempor quis, sagittis accumsan tellus. In hac habitasse platea dictumst</p>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+              <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+              <button class="btn btn-success" type="button" (click)="finishFunction()">Finish</button>
+            </div>
+          </aw-wizard-step>
+        </aw-wizard>
+
+      </div>
+    </div>
+  </div> <!-- col -->
+</div> <!-- row -->

@@ -1,0 +1,31 @@
+
+.input-file {
+  display: flex;
+}
+.input-file input{
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+.input-file .btn{
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.input-file.pdf input{
+  border-radius: 0;
+}
+
+.file-upload {
+  position: relative;
+}
+.file-upload.btn.btn-icon {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.file-upload input[type='file']{
+  height:100%;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
+  cursor:pointer;
+}

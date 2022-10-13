@@ -1,0 +1,21 @@
+<div #pdfAddBox id="pdf-add-box" style="position: relative; width: 100%; height: 763px;">
+  <pdf-viewer [src]="pdfSrc"
+              [original-size]="false"
+              [(page)]="pageVariable"
+              [render-text-mode]="0"
+              [zoom]="zoom"
+              (page-rendered)="pageRendered($event)"
+              (after-load-complete)="afterLoadComplete($event)"
+              style="width: 100%; height: 100%"
+  >
+  </pdf-viewer>
+  <div class="pdf-save">
+    <div class="btn btn-secondary me-2" (click)="zoomOut()">Guardar</div>
+    <div class="btn btn-secondary" (click)="zoomIn()">Concluido</div>
+  </div>
+  <div class="pdf-zoom">
+    <div class="btn btn-secondary btn-icon me-2" (click)="zoomOut()">-</div>
+    <div class="btn btn-secondary btn-icon" (click)="zoomIn()">+</div>
+  </div>
+</div>
+

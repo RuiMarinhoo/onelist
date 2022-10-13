@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Agregar Cliente</h4>
+  <button type="button" class="close" aria-label="Close">
+    <span aria-hidden="true" (click)="closeModal()">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="col-12 grid-margin">
+          <div class="ng-autocomplete">
+            <ng-autocomplete #productAuto
+                             [data]="box"
+                             [searchKeyword]="keyword"
+                             placeholder="Seleccionar Produto"
+                             (selected)='selectEvent($event)'
+                             (inputChanged)='onChangeSearch($event)'
+                             (inputFocused)='onFocused($event)'
+                             [itemTemplate]="itemTemplate"
+                             [notFoundTemplate]="notFoundTemplate"
+                             (focusout)="onFocusOut(productAuto)">
+            </ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.name"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
+          </div>
+        </div>
+        <div class="col-12">
+          <h5 class="mb-2">Icon Position</h5>
+          <div class="mb-4">
+            <div class="form-check form-check-inline">
+              <input type="radio" name="radioInline" id="radioInline" class="form-check-input">
+              <label for="radioInline" class="form-check-label"> Top Left </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="radioInline" id="radioInline1" class="form-check-input">
+              <label for="radioInline1" class="form-check-label"> Top Right </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="radioInline" id="radioInline2" class="form-check-input">
+              <label for="radioInline2" class="form-check-label"> Bottom Left </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="radioInline" id="radioInline3" class="form-check-input">
+              <label for="radioInline3" class="form-check-label"> Bottom Right </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Save</button>
+</div>
