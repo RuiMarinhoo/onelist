@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { ErrorPageComponent } from "./views/pages/error-page/error-page.component";
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -25,6 +27,12 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     AuthGuard,
